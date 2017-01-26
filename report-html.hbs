@@ -1,0 +1,68 @@
+<style>
+  html {
+    padding: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  img {
+    display: block;
+  }
+
+  .screenshotWrapper {
+    margin: 0 0 20px 0;
+  }
+
+  .screenshot {
+    background-color: #efefef;
+    padding: 20px;
+    border: 1px solid #b6b6b6;
+    margin: 0 0 1px 0;
+  }
+
+  h4 {
+    margin-top: 0;
+  }
+</style>
+
+{{#each specs.groupedSpecs}}
+  {{#unless passTest}}
+    <h1>{{id}}</h1>
+    {{#each variants}}
+      {{#unless passTest}}
+        <h2>Variant {{id}}</h2>
+        {{#unless passTest}}
+          {{#each resolutions}}
+            {{#unless passTest}}
+              <h3>{{id}}</h3>
+              <div class="resolution">
+              {{#each screenshots}}
+                {{#unless passTest}}
+                  <div class="screenshotWrapper">
+                  {{#if masterScreenshotExists}}
+                    <div class="screenshot">
+                      <img src="{{@root.paths.diff}}/{{screenshotFilename}}">
+                    </div>
+                    <div class="screenshot">
+                      <img
+                        src="{{@root.paths.new}}/{{screenshotFilename}}"
+                        onmouseover="this.src='{{@root.paths.master}}/{{screenshotFilename}}'"
+                        onmouseout="this.src='{{@root.paths.new}}/{{screenshotFilename}}'"
+                      >
+                    </div>
+                  {{else}}
+                    <div class="screenshot">
+                      <h4>No master screenshot exist!</h4>
+                      <img src="{{@root.paths.new}}/{{screenshotFilename}}">
+                    </div>
+                  {{/if}}
+                  </div>
+                {{/unless}}
+              {{/each}}
+              </div>
+            {{/unless}}
+          {{/each}}
+        {{/unless}}
+      {{/unless}}
+    {{/each}}
+  {{/unless}}
+{{/each}}
