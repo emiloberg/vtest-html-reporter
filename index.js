@@ -19,7 +19,13 @@ function reportHTML({ specs, config, reporterConfig, log, chalk }) {
     diff: path.relative(normalizedOutputPath, config.get("temp.screenshots.diff"))
   }
 
-  const source = fs.readFileSync(path.join(__dirname, "report-html.hbs"), "utf-8")
+  let source;
+  if (reporterConfig.template) {
+    source = fs.readFileSync(reporterConfig.template, "utf-8")
+  } else {
+    source = fs.readFileSync(path.join(__dirname, "report-html.hbs"), "utf-8")
+  }
+
   const template = Handlebars.compile(source)
   const html = template({ config: config.getAll(), specs, paths })
 
