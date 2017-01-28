@@ -31,9 +31,7 @@ function reportHTML({ specs, config, reporterConfig, log, chalk }) {
 
   fs.outputFileSync(reporterConfig.output, html)
 
-  log.log()
   log.log(`   ${chalk.blue("HTML Report:")} ${reporterConfig.output}`)
-  log.log()
 
   return specs
 }
