@@ -29,7 +29,7 @@
     <h1>{{id}}</h1>
     {{#each variants}}
       {{#unless passTest}}
-        <h2>Variant {{id}}</h2>
+        <h2>Props variant: {{name}}</h2>
         {{#unless passTest}}
           {{#each resolutions}}
             {{#unless passTest}}
@@ -38,23 +38,24 @@
               {{#each screenshots}}
                 {{#unless passTest}}
                   <div class="screenshotWrapper">
-                  {{#if masterScreenshotExists}}
-                    <div class="screenshot">
-                      <img src="{{@root.paths.diff}}/{{screenshotFilename}}">
-                    </div>
-                    <div class="screenshot">
-                      <img
-                        src="{{@root.paths.new}}/{{screenshotFilename}}"
-                        onmouseover="this.src='{{@root.paths.master}}/{{screenshotFilename}}'"
-                        onmouseout="this.src='{{@root.paths.new}}/{{screenshotFilename}}'"
-                      >
-                    </div>
-                  {{else}}
-                    <div class="screenshot">
-                      <h4>No master screenshot exist!</h4>
-                      <img src="{{@root.paths.new}}/{{screenshotFilename}}">
-                    </div>
-                  {{/if}}
+                    <h4>{{browser}}</h4>
+                    {{#if masterScreenshotExists}}
+                      <div class="screenshot">
+                        <img src="{{@root.paths.diff}}/{{screenshotFilename}}">
+                      </div>
+                      <div class="screenshot">
+                        <img
+                          src="{{@root.paths.new}}/{{screenshotFilename}}"
+                          onmouseover="this.src='{{@root.paths.master}}/{{screenshotFilename}}'"
+                          onmouseout="this.src='{{@root.paths.new}}/{{screenshotFilename}}'"
+                        >
+                      </div>
+                    {{else}}
+                      <div class="screenshot">
+                        <h4>No master screenshot exist!</h4>
+                        <img src="{{@root.paths.new}}/{{screenshotFilename}}">
+                      </div>
+                    {{/if}}
                   </div>
                 {{/unless}}
               {{/each}}
