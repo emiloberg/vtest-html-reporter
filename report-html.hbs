@@ -41,11 +41,15 @@
                     <h4>{{browser}}</h4>
                     {{#if masterScreenshotExists}}
                       <div class="screenshot">
-                        <img src="{{@root.paths.diff}}/{{screenshotFilename}}">
+                        <img
+                          src="{{@root.paths.diff}}/{{screenshotFilename}}"
+                          style="width: calc({{imageMetadata.width}}px/{{imageMetadata.scaleFactor}})"
+                        >
                       </div>
                       <div class="screenshot">
                         <img
                           src="{{@root.paths.new}}/{{screenshotFilename}}"
+                          style="width: calc({{imageMetadata.width}}px/{{imageMetadata.scaleFactor}})"
                           onmouseover="this.src='{{@root.paths.master}}/{{screenshotFilename}}'"
                           onmouseout="this.src='{{@root.paths.new}}/{{screenshotFilename}}'"
                         >
@@ -53,7 +57,10 @@
                     {{else}}
                       <div class="screenshot">
                         <h4>No master screenshot exist!</h4>
-                        <img src="{{@root.paths.new}}/{{screenshotFilename}}">
+                        <img
+                          src="{{@root.paths.new}}/{{screenshotFilename}}"
+                          style="width: calc({{imageMetadata.width}}px/{{imageMetadata.scaleFactor}})"
+                        >
                       </div>
                     {{/if}}
                   </div>
