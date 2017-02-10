@@ -1,0 +1,48 @@
+<style>
+  html {
+    padding: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  img {
+    display: block;
+  }
+
+  .screenshotWrapper {
+    margin: 0 0 20px 0;
+  }
+
+  .screenshot {
+    background-color: #efefef;
+    padding: 20px;
+    border: 1px solid #b6b6b6;
+    margin: 0 0 1px 0;
+  }
+
+  h4 {
+    margin-top: 0;
+  }
+</style>
+
+{{#each specs.groupedSpecs}}
+    <h1>{{id}}</h1>
+    {{#each variants}}
+        <h2>Props variant: {{name}}</h2>
+          {{#each resolutions}}
+              <h3>{{id}}</h3>
+              <div class="resolution">
+              {{#each screenshots}}
+                  <div class="screenshotWrapper">
+                    <h4>{{browser}}</h4>
+                      <div class="screenshot">
+                        <img
+                          src="{{@root.paths.new}}/{{screenshotFilename}}"
+                          style="width: calc({{imageMetadata.width}}px/{{imageMetadata.scaleFactor}})"
+                        >
+                      </div>
+                  </div>
+              {{/each}}
+              </div>
+          {{/each}}
+    {{/each}}
+{{/each}}
