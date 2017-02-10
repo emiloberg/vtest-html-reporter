@@ -6,7 +6,7 @@ Handlebars.registerHelper("json", context =>
   JSON.stringify(context, null, "  ")
 )
 
-function reportHTML({ specs, config, reporterConfig, log, chalk }) {
+function reportHTML({ specs, config, reporterConfig, log }) {
   if (specs.flatSpecs.every(spec => spec.passTest)) {
     return specs
   }
@@ -31,9 +31,11 @@ function reportHTML({ specs, config, reporterConfig, log, chalk }) {
 
   fs.outputFileSync(reporterConfig.output, html)
 
-  log.log(`   ${chalk.blue("HTML Report:")} ${reporterConfig.output}`)
+  log.infoValue("HTML Report", reporterConfig.output)
 
   return specs
 }
 
-module.exports = reportHTML
+module.exports = {
+  result: reportHTML
+}
