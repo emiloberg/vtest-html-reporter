@@ -6,6 +6,18 @@ Handlebars.registerHelper("json", context =>
   JSON.stringify(context, null, "  ")
 )
 
+Handlebars.registerHelper("props", context => {
+  const out = Object.keys(context)
+    .map(key =>
+      `<tr>
+        <td>${key}</td>
+        <td><pre>${JSON.stringify(context[key], null, "  ")}</pre></td>
+       </tr>`
+    )
+
+  return `<table>${out.join("")}</table>`
+})
+
 function reportHTML({ specs, config, reporterConfig, log }) {
   if (specs.flatSpecs.every(spec => spec.passTest)) {
     return specs
